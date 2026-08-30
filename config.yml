@@ -1,0 +1,84 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "content/uploads"
+public_folder: "/content/uploads"
+
+locale: "ar"
+
+collections:
+  - name: "site_content"
+    label: "محتوى الموقع"
+    files:
+
+      - name: "portfolio"
+        label: "الأعمال"
+        file: "content/portfolio.json"
+        fields:
+          - label: "المشاريع"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "نوع المشروع"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "موقع تعريفي", value: "site" }
+                  - { label: "نظام أو منصة إدارة", value: "system" }
+                  - { label: "متجر إلكتروني", value: "store" }
+                  - { label: "مشروع مخصص", value: "custom" }
+              - { label: "اسم المشروع", name: "title", widget: "string" }
+              - { label: "وصف قصير", name: "description", widget: "text" }
+              - { label: "رابط المشروع", name: "link", widget: "string", required: false, hint: "رابط الموقع/النظام الحقيقي - يفتح عند الضغط على المشروع" }
+              - { label: "صورة المشروع (اختياري)", name: "image", widget: "image", required: false, hint: "إذا تركتها فارغة سيظهر شكل توضيحي بدلًا منها" }
+
+      - name: "pricing"
+        label: "الأسعار"
+        file: "content/pricing.json"
+        fields:
+          - label: "باقات المواقع التعريفية"
+            name: "site"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields: &price_fields
+              - { label: "اسم الباقة", name: "name", widget: "string" }
+              - { label: "تناسب", name: "for", widget: "string" }
+              - { label: "السعر (رقم فقط بالريال)", name: "price", widget: "string" }
+              - { label: "المدة التقريبية", name: "duration", widget: "string" }
+              - { label: "الأكثر طلبًا؟", name: "featured", widget: "boolean", default: false }
+              - label: "ما تشمله الباقة"
+                name: "features"
+                widget: "list"
+                field: { label: "بند", name: "item", widget: "string" }
+          - label: "باقات المتاجر الإلكترونية"
+            name: "store"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields: *price_fields
+          - label: "باقات أنظمة ومنصات الإدارة"
+            name: "system"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields: *price_fields
+
+      - name: "faq"
+        label: "الأسئلة الشائعة"
+        file: "content/faq.json"
+        fields:
+          - label: "الأسئلة"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.question}}"
+            fields:
+              - { label: "السؤال", name: "question", widget: "string" }
+              - { label: "الإجابة", name: "answer", widget: "text" }
+
+      - name: "settings"
+        label: "بيانات التواصل"
+        file: "content/settings.json"
+        fields:
+          - { label: "رقم الجوال / واتساب", name: "whatsapp", widget: "string", hint: "بصيغة دولية بدون + أو مسافات، مثال: 966557837554" }
+          - { label: "رقم الهاتف المعروض", name: "phone_display", widget: "string", hint: "الشكل الذي يظهر للزوار، مثال: ‎+966 55 783 7554" }
+          - { label: "البريد الإلكتروني", name: "email", widget: "string" }
