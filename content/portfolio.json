@@ -1,3 +1,11 @@
 {
-  "items": []
+  "items": [
+    {
+      "category": "system",
+      "title": "ديار العقاري",
+      "description": "منصة ديار لإدارة العقارات وإدارة الأملاك وعقود المستأجرين",
+      "link": "https://diyar-real-estate-office.abdullahalshibaan.chatgpt.site",
+      "image": "https://diyar-real-estate-office.abdullahalshibaan.chatgpt.site"
+    }
+  ]
 }
