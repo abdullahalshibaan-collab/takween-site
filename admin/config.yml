@@ -5,8 +5,6 @@ backend:
 media_folder: "content/uploads"
 public_folder: "/content/uploads"
 
-locale: "ar"
-
 collections:
   - name: "site_content"
     label: "محتوى الموقع"
@@ -80,5 +78,5 @@ collections:
         file: "content/settings.json"
         fields:
           - { label: "رقم الجوال / واتساب", name: "whatsapp", widget: "string", hint: "بصيغة دولية بدون + أو مسافات، مثال: 966557837554" }
-          - { label: "رقم الهاتف المعروض", name: "phone_display", widget: "string", hint: "الشكل الذي يظهر للزوار، مثال: ‎+966 55 783 7554" }
+          - { label: "رقم الهاتف المعروض", name: "phone_display", widget: "string", hint: "الشكل الذي يظهر للزوار، مثال: +966 55 783 7554" }
           - { label: "البريد الإلكتروني", name: "email", widget: "string" }
