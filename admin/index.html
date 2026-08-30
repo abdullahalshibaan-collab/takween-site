@@ -1,13 +1,223 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لوحة التحكم | تكوين</title>
-  <base href="/admin/" />
-  <style>body{font-family:sans-serif;}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تكوين | حلول رقمية تُبنى حول احتياجك</title>
+<meta name="description" content="تكوين منصة سعودية لتصميم وتطوير المواقع، أنظمة الإدارة، المتاجر الإلكترونية، والمشاريع الرقمية المخصصة.">
+<meta property="og:title" content="تكوين | حلول رقمية تُبنى حول احتياجك">
+<meta property="og:description" content="مواقع، أنظمة إدارة، متاجر إلكترونية، ومشاريع رقمية مخصصة — نصممها ونطورها لتناسب طريقة عملك.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="index.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+<header id="siteHeader">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 30 30" fill="none"><rect x="2" y="16" width="6" height="12" rx="1.5" fill="currentColor" opacity=".55"/><rect x="12" y="9" width="6" height="19" rx="1.5" fill="currentColor" opacity=".8"/><rect x="22" y="2" width="6" height="26" rx="1.5" fill="#2563EB"/></svg>
+      تكوين
+    </a>
+    <nav class="links">
+      <a href="index.html" class="active">الرئيسية</a>
+      <a href="services.html">الخدمات</a>
+      <a href="solutions.html">الحلول</a>
+      <a href="work.html">أعمالنا</a>
+      <a href="pricing.html">الأسعار</a>
+      <a href="about.html">من نحن</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-ghost">تواصل معنا</a>
+      <a href="request.html" class="btn btn-primary">اطلب مشروعك</a>
+    </div>
+    <button class="burger" id="burger" aria-label="القائمة"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div id="mobileMenu">
+  <a href="index.html" class="active">الرئيسية</a>
+  <a href="services.html">الخدمات</a>
+  <a href="solutions.html">الحلول</a>
+  <a href="work.html">أعمالنا</a>
+  <a href="pricing.html">الأسعار</a>
+  <a href="about.html">من نحن</a>
+  <a href="faq.html">الأسئلة الشائعة</a>
+  <a href="contact.html">تواصل معنا</a>
+  <a href="request.html" class="btn btn-primary">اطلب مشروعك</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-veil"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <h1>حلول رقمية تُبنى <span>حول احتياجك</span>، لا العكس</h1>
+      <p class="lead">مواقع، أنظمة إدارة، متاجر إلكترونية، ومشاريع رقمية مخصصة — نفهم طبيعة عملك أولًا، ثم نصمم ونطوّر الحل الذي يناسبها فعلًا.</p>
+      <div class="cta-row">
+        <a href="request.html" class="btn btn-primary">ابدأ مشروعك</a>
+        <a href="work.html" class="btn btn-ghost-light">شاهد أعمالنا</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>موقع، نظام، أو متجر</b><span>حسب طبيعة مشروعك تحديدًا</span></div>
+        <div><b>من الفكرة إلى الإطلاق</b><span>عبر مسار عمل واضح ومتابع</span></div>
+        <div><b>قابلة للتوسع</b><span>تكبر مع نمو أعمالك</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER / SIGNATURE INTERACTIVE SECTION -->
+<section class="builder" id="builder">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">ابدأ من هنا</div>
+      <h2>ماذا تريد أن نبني لك؟</h2>
+      <p>اختر النوع الأقرب لفكرتك، وشاهد أمثلة توضيحية للأشكال التي يمكن أن يأخذها مشروعك.</p>
+    </div>
+    <div class="builder-tabs reveal" id="builderTabs">
+      <button class="tab-card active" data-type="site"><span class="num">01</span><h4>موقع تعريفي</h4><p>لشركتك، مؤسستك، أو خدماتك</p></button>
+      <button class="tab-card" data-type="system"><span class="num">02</span><h4>نظام أو منصة إدارة</h4><p>لتنظيم عملياتك الداخلية</p></button>
+      <button class="tab-card" data-type="store"><span class="num">03</span><h4>متجر إلكتروني</h4><p>لبيع منتجاتك أو خدماتك</p></button>
+      <button class="tab-card" data-type="custom"><span class="num">04</span><h4>مشروع مخصص</h4><p>فكرة مختلفة أو مركّبة</p></button>
+    </div>
+    <div class="builder-panel reveal" id="builderPanel">
+      <div class="panel-left" id="panelLeft"></div>
+      <div class="panel-right"><div class="mockup" id="panelMockup"></div></div>
+    </div>
+    <p style="text-align:center;margin-top:28px;" class="reveal"><a href="services.html" class="btn btn-ghost btn-sm">تفاصيل الخدمات كاملة ←</a></p>
+  </div>
+</section>
+
+<!-- QUICK SOLUTIONS TEASER -->
+<section class="solutions">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">الحلول</div>
+      <h2>حلول مبنية حسب مجال عملك</h2>
+      <p>نبني نفس الفكرة بشكل مختلف حسب طبيعة القطاع الذي تعمل فيه.</p>
+    </div>
+    <div class="sol-grid reveal">
+      <div class="sol-card"><span class="dot"></span><h4>حلول العقارات</h4><p>عرض وإدارة الوحدات العقارية ومتابعة العملاء والعقود.</p></div>
+      <div class="sol-card"><span class="dot"></span><h4>حلول الشركات</h4><p>أنظمة داخلية تربط الفرق والعمليات في مكان واحد.</p></div>
+      <div class="sol-card"><span class="dot"></span><h4>حلول الجمعيات</h4><p>مواقع وأنظمة لإدارة الأعضاء والمستفيدين والفعاليات.</p></div>
+      <div class="sol-card"><span class="dot"></span><h4>المشاريع الناشئة</h4><p>بناء المنتج الرقمي الأول بشكل قابل للتوسع من اليوم الأول.</p></div>
+    </div>
+    <p style="text-align:center;margin-top:32px;" class="reveal"><a href="solutions.html" class="btn btn-ghost btn-sm">شاهد جميع الحلول ←</a></p>
+  </div>
+</section>
+
+<!-- WORK TEASER -->
+<section class="work section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">أعمالنا</div>
+      <h2>نماذج على نوعية المشاريع التي نبنيها</h2>
+      <p>أمثلة توضيحية لأنواع الحلول التي نصممها، بحسب نوع المشروع ومجاله.</p>
+    </div>
+    <div class="work-grid reveal">
+      <div class="work-card" onclick="location.href='project.html'">
+        <div class="work-thumb"><div class="wm"><i style="width:70%"></i><i style="width:40%"></i><i style="width:85%"></i><i style="width:55%"></i></div></div>
+        <div class="work-body">
+          <div class="work-cat">نظام إدارة عقارات</div>
+          <h4>منصة متابعة الوحدات والعقود</h4>
+          <p>عرض الوحدات، تتبع حالتها، وربط العقود بالمستأجرين في لوحة واحدة.</p>
+          <a class="work-link" href="project.html">مشاهدة المشروع <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+        </div>
+      </div>
+      <div class="work-card" onclick="location.href='project.html'">
+        <div class="work-thumb"><div class="wm"><i style="width:50%"></i><i style="width:80%"></i><i style="width:35%"></i><i style="width:65%"></i></div></div>
+        <div class="work-body">
+          <div class="work-cat">متجر إلكتروني</div>
+          <h4>متجر لبيع منتجات وحجز طلبات مباشرة</h4>
+          <p>واجهة بيع بسيطة، ولوحة تحكم لإدارة المنتجات والطلبات والمدفوعات.</p>
+          <a class="work-link" href="project.html">مشاهدة المشروع <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+        </div>
+      </div>
+      <div class="work-card" onclick="location.href='project.html'">
+        <div class="work-thumb"><div class="wm"><i style="width:60%"></i><i style="width:30%"></i><i style="width:75%"></i><i style="width:45%"></i></div></div>
+        <div class="work-body">
+          <div class="work-cat">موقع تعريفي</div>
+          <h4>موقع مؤسسة بخدمة تسجيل مستفيدين</h4>
+          <p>يعرّف بالمؤسسة وأنشطتها، ويتيح تسجيل المستفيدين مباشرة من الموقع.</p>
+          <a class="work-link" href="project.html">مشاهدة المشروع <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:32px;" class="reveal"><a href="work.html" class="btn btn-ghost btn-sm">شاهد جميع الأعمال ←</a></p>
+  </div>
+</section>
+
+<!-- WHY (short) -->
+<section class="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">لماذا تختارنا</div>
+      <h2>طريقة عمل واضحة من أول يوم</h2>
+      <p>لا نعدك بأرقام، بل بطريقة تنفيذ تجعلك مطمئنًا لكل مرحلة.</p>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card"><span class="why-num">01</span><h4>حل مبني لاحتياجك</h4><p>لا نبدأ بقالب جاهز، بل بفهم طريقة عملك أولًا قبل أي تصميم.</p></div>
+      <div class="why-card"><span class="why-num">02</span><h4>مراجعات أثناء التنفيذ</h4><p>تشاهد تقدم مشروعك خطوة بخطوة، لا تفاجأ به عند التسليم فقط.</p></div>
+      <div class="why-card"><span class="why-num">03</span><h4>دعم بعد الإطلاق</h4><p>نبقى معك في الفترة التي تلي التسليم لمعالجة أي ملاحظة تظهر أثناء الاستخدام.</p></div>
+    </div>
+    <p style="text-align:center;margin-top:32px;" class="reveal"><a href="about.html" class="btn btn-ghost-light btn-sm">تعرّف علينا أكثر ←</a></p>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">كيف نعمل</div>
+      <h2>ست مراحل من الفكرة إلى الإطلاق</h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step first"><b class="n">01</b><h4>طلب المشروع</h4><p>ترسل فكرتك عبر نموذج مختصر.</p></div>
+      <div class="step"><b class="n">02</b><h4>دراسة الفكرة</h4><p>نفهم هدفك واحتياجك الفعلي.</p></div>
+      <div class="step"><b class="n">03</b><h4>تحديد النطاق والسعر</h4><p>نحدد ما سيُبنى والتكلفة بوضوح.</p></div>
+      <div class="step"><b class="n">04</b><h4>التصميم</h4><p>تصميم تجربة المستخدم والواجهات.</p></div>
+      <div class="step"><b class="n">05</b><h4>التطوير والاختبار</h4><p>بناء المشروع واختباره بعناية.</p></div>
+      <div class="step"><b class="n">06</b><h4>الإطلاق والتسليم</h4><p>إطلاق المشروع وتسليمه لك جاهزًا.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA BANNER -->
+<section class="cta-final" style="padding-bottom:90px;">
+  <div class="container">
+    <div class="center reveal">
+      <h2>لديك فكرة مشروع؟ لنبدأ بفهمها</h2>
+      <p>أرسل تفاصيل مختصرة، وسنعود إليك بخطة واضحة للتنفيذ والسعر التقريبي.</p>
+      <a href="request.html" class="btn btn-primary">اطلب مشروعك الآن</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="logo">
+          <svg class="logo-mark" viewBox="0 0 30 30" fill="none"><rect x="2" y="16" width="6" height="12" rx="1.5" fill="currentColor" opacity=".55"/><rect x="12" y="9" width="6" height="19" rx="1.5" fill="currentColor" opacity=".8"/><rect x="22" y="2" width="6" height="26" rx="1.5" fill="#2563EB"/></svg>
+          تكوين
+        </a>
+        <p>منصة سعودية لتصميم وتطوير المواقع، أنظمة الإدارة، المتاجر الإلكترونية، والمشاريع الرقمية المخصصة.</p>
+      </div>
+      <div class="footer-col"><h5>الشركة</h5><ul><li><a href="about.html">من نحن</a></li><li><a href="work.html">أعمالنا</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li></ul></div>
+      <div class="footer-col"><h5>الخدمات</h5><ul><li><a href="services.html">مواقع تعريفية</a></li><li><a href="services.html">أنظمة إدارة</a></li><li><a href="services.html">متاجر إلكترونية</a></li></ul></div>
+      <div class="footer-col"><h5>تواصل معنا</h5><ul><li><a href="mailto:hello@takween.sa">hello@takween.sa</a></li><li><a href="tel:+966500000000">+966 50 000 0000</a></li><li><a href="request.html">اطلب مشروعك</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 تكوين. جميع الحقوق محفوظة.</span>
+      <span>الرياض، المملكة العربية السعودية</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
 </body>
 </html>
