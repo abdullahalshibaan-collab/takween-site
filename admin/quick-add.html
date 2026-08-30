@@ -41,6 +41,7 @@
   .gate{text-align:center;padding:60px 20px;}
   .gate button{background:var(--navy);color:#fff;padding:14px 28px;}
   a.back{display:inline-block;margin-bottom:18px;color:var(--ink-soft);font-size:13.5px;}
+  .loading-msg{text-align:center;color:var(--ink-soft);font-size:14px;padding:40px 20px;}
 </style>
 </head>
 <body>
@@ -48,6 +49,8 @@
   <a href="/work.html" class="back">← رجوع للموقع</a>
   <h1>إضافة عمل جديد لصفحة أعمالنا</h1>
   <p class="sub">الصق رابط المشروع، واضغط "جلب المعاينة" ليجيب العنوان والصورة تلقائيًا — ثم عدّل ما تحب واحفظ.</p>
+
+  <p id="loadingMsg" class="loading-msg">جارٍ تحميل نظام الدخول...</p>
 
   <div id="gate" class="gate card" style="display:none;">
     <p style="margin-bottom:16px;">سجّل دخولك أولًا لإضافة عمل جديد.</p>
@@ -85,4 +88,132 @@
       <label>وصف قصير</label>
       <textarea id="descInput" placeholder="وصف مختصر للمشروع"></textarea>
 
-      <label>رابط الصورة (تعبّأ تلقائيًا، وتق
+      <label>رابط الصورة (تعبّأ تلقائيًا، وتقدر تغيّرها)</label>
+      <input type="url" id="imageInput" placeholder="https://...">
+
+      <div id="saveStatus" class="status"></div>
+      <button class="btn-primary" id="saveBtn">حفظ في صفحة الأعمال</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+const gate = document.getElementById('gate');
+const formArea = document.getElementById('formArea');
+const loginBtn = document.getElementById('loginBtn');
+const loadingMsg = document.getElementById('loadingMsg');
+
+function showStatus(el, msg, type){
+  el.textContent = msg;
+  el.className = 'status show ' + type;
+}
+function hideStatus(el){ el.className = 'status'; }
+
+function checkAuth(){
+  loadingMsg.style.display = 'none';
+  const user = window.netlifyIdentity && netlifyIdentity.currentUser();
+  if(user){
+    gate.style.display = 'none';
+    formArea.style.display = 'block';
+  } else {
+    gate.style.display = 'block';
+    formArea.style.display = 'none';
+  }
+}
+
+if(window.netlifyIdentity){
+  netlifyIdentity.on('init', checkAuth);
+  netlifyIdentity.on('login', checkAuth);
+  netlifyIdentity.on('logout', checkAuth);
+  netlifyIdentity.init();
+  // ضمان ظهور الواجهة حتى لو تأخر حدث init لأي سبب
+  setTimeout(checkAuth, 1500);
+} else {
+  loadingMsg.textContent = 'تعذر تحميل نظام الدخول. حدّث الصفحة أو تحقق من اتصالك.';
+}
+
+loginBtn.addEventListener('click', () => netlifyIdentity.open('login'));
+
+document.getElementById('fetchBtn').addEventListener('click', async () => {
+  const link = document.getElementById('linkInput').value.trim();
+  const statusEl = document.getElementById('fetchStatus');
+  const fetchBtn = document.getElementById('fetchBtn');
+  if(!link){ showStatus(statusEl, 'أدخل رابط المشروع أولًا', 'error'); return; }
+
+  fetchBtn.disabled = true;
+  showStatus(statusEl, 'جارٍ جلب المعاينة...', 'info');
+
+  try {
+    const res = await fetch('/.netlify/functions/fetch-preview?url=' + encodeURIComponent(link));
+    const data = await res.json();
+    if(!res.ok) throw new Error(data.error || 'تعذر الجلب');
+
+    document.getElementById('titleInput').value = data.title || '';
+    document.getElementById('descInput').value = data.description || '';
+    document.getElementById('imageInput').value = data.image || '';
+
+    const previewBox = document.getElementById('previewBox');
+    if(data.image || data.title){
+      previewBox.classList.add('show');
+      document.getElementById('previewImg').src = data.image || '';
+      document.getElementById('previewTitle').textContent = data.title || '(بدون عنوان)';
+      document.getElementById('previewDesc').textContent = data.description || '';
+    }
+    hideStatus(statusEl);
+  } catch (err) {
+    showStatus(statusEl, 'تعذر جلب المعاينة تلقائيًا — تقدر تكتب البيانات يدويًا بالأسفل', 'error');
+  } finally {
+    fetchBtn.disabled = false;
+  }
+});
+
+document.getElementById('saveBtn').addEventListener('click', async () => {
+  const saveBtn = document.getElementById('saveBtn');
+  const statusEl = document.getElementById('saveStatus');
+  const payload = {
+    category: document.getElementById('categorySelect').value,
+    title: document.getElementById('titleInput').value.trim(),
+    description: document.getElementById('descInput').value.trim(),
+    link: document.getElementById('linkInput').value.trim(),
+    image: document.getElementById('imageInput').value.trim(),
+  };
+  if(!payload.title || !payload.link){
+    showStatus(statusEl, 'اسم المشروع والرابط مطلوبان', 'error');
+    return;
+  }
+
+  const user = netlifyIdentity.currentUser();
+  if(!user){ showStatus(statusEl, 'يجب تسجيل الدخول أولًا', 'error'); return; }
+
+  saveBtn.disabled = true;
+  showStatus(statusEl, 'جارٍ الحفظ...', 'info');
+
+  try {
+    const token = await user.jwt();
+    const res = await fetch('/.netlify/functions/save-project', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if(!res.ok) throw new Error(data.error || 'فشل الحفظ');
+
+    showStatus(statusEl, 'تم الحفظ بنجاح ✓ — يظهر بالموقع خلال دقيقة (وقت إعادة النشر التلقائي)', 'success');
+    document.getElementById('linkInput').value = '';
+    document.getElementById('titleInput').value = '';
+    document.getElementById('descInput').value = '';
+    document.getElementById('imageInput').value = '';
+    document.getElementById('previewBox').classList.remove('show');
+  } catch (err) {
+    showStatus(statusEl, 'خطأ: ' + err.message, 'error');
+  } finally {
+    saveBtn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
